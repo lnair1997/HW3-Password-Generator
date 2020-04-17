@@ -10,5 +10,16 @@ function writePassword() {
 
 }
 
+// Variables in the random generate password
+var upperCase= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var lowerCase= upperCase.toLowerCase();
+var numbers= '0123456789';
+var SpecialChara= '~`!@#$%^&*()-_=+';
+
+// Generate random password function
+
+function generatePassword()
+
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
