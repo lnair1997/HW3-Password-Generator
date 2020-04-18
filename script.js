@@ -4,6 +4,10 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
+  // if (password===undefined) {
+  //   return writePassword();
+  
+  // }
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -16,15 +20,15 @@ var lowerCase = 'abcdefghijklmnopqrstuvwxyz'.split('');
 var numbers = '0123456789'.split('');
 var specialChara = '~`!@#$%^&*()-_=+'.split('');
 var userPassword = [];
-var charaSets= [];
+var charaSets = [];
 // Generate random password function
 
 function generatePassword() {
-  charaNumber = prompt('How many characters would you like? \nPick a number between 8 and 128.');
-  var pslength = parseInt(charaNumber) //turns Input into an integer
- 
-  if (pslength >= 8 && pslength <= 128 && Number.isInteger(pslength)) {
-    
+  charaNumber = prompt('How many chara{cters would you like? \nPick a number between 8 and 128.');
+  var psLength = parseInt(charaNumber) //turns Input into an integer
+
+  if (psLength >= 8 && psLength <= 128 && Number.isInteger(psLength)) {
+
 
     var confirmUpper = confirm('Do you want upper case letter?');
     var confirmLower = confirm('Do you want lower case letters?');
@@ -36,32 +40,49 @@ function generatePassword() {
     }
 
     if (confirmUpper) {
-      charaSets= charaSets.concat(upperCase);
+      charaSets = charaSets.concat(upperCase);
+      // userPassword = userPassword.concat(upperCase[Math.floor(Math.random() * upperCase.length)]);
+      userPassword += upperCase[Math.floor(Math.random() * upperCase.length)];
+
     }
 
     if (confirmLower) {
-      charaSets= charaSets.concat(lowerCase);
-      
+      charaSets = charaSets.concat(lowerCase);
+      userPassword += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+
     }
 
     if (confirmNumber) {
-      charaSets= charaSets.concat(numbers);
+      charaSets = charaSets.concat(numbers);
+      userPassword += numbers[Math.floor(Math.random() * numbers.length)];
     }
 
     if (confirmSpecial) {
-      charaSets= charaSets.concat(specialChara);
-      console.log(charaSets);
+      charaSets = charaSets.concat(specialChara);
+      userPassword += specialChara[Math.floor(Math.random() * specialChara.length)];
+
     }
+
+    psLength = psLength - userPassword.length;
+
+    for (var i = 0; i < psLength; i++) {
+      // Generate a random decimal number between 0 and length of array to select associated list item in array
+      var num = Math.random();
+      var wholeNum = Math.floor(num * charaSets.length)
+
+      charaSets[wholeNum] //select items from list using random number generated
+
+      userPassword += charaSets[wholeNum] //combine all items selected from list into password list
+    }
+
+    
+  return userPassword;
 
   } else {
     alert('Password needs to be between 8 and 128.');
   }
-  
+ 
 }
 
-
-
-
-
-  // Add event listener to generate button
-  generateBtn.addEventListener("click", writePassword);
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
