@@ -18,8 +18,18 @@ var SpecialChara= '~`!@#$%^&*()-_=+';
 
 // Generate random password function
 
-function generatePassword()
+function generatePassword() {
+  charaNumber= prompt('How many characters would you like? \nPick a number between 8 and 128.');
 
+  if (charaNumber< 8 || charaNumber > 128 || charaNumber=='') {
+    alert('Password needs to be between 8 and 128.')
+
+} else {
+  var confirmUpper = confirm('Do you want upper case letter?');
+  var confirmLower = confirm('Do you want lower case letters?');
+  var confirmNumber= confirm('Do you want numbers?');
+  var confirmSpecial= confirm('Do you want special characters?');
+}}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
