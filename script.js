@@ -11,25 +11,57 @@ function writePassword() {
 }
 
 // Variables in the random generate password
-var upperCase= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var lowerCase= upperCase.toLowerCase();
-var numbers= '0123456789';
-var SpecialChara= '~`!@#$%^&*()-_=+';
-
+var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+var lowerCase = 'abcdefghijklmnopqrstuvwxyz'.split('');
+var numbers = '0123456789'.split('');
+var specialChara = '~`!@#$%^&*()-_=+'.split('');
+var userPassword = [];
+var charaSets= [];
 // Generate random password function
 
 function generatePassword() {
-  charaNumber= prompt('How many characters would you like? \nPick a number between 8 and 128.');
+  charaNumber = prompt('How many characters would you like? \nPick a number between 8 and 128.');
+  var pslength = parseInt(charaNumber) //turns Input into an integer
+ 
+  if (pslength >= 8 && pslength <= 128 && Number.isInteger(pslength)) {
+    
 
-  if (charaNumber< 8 || charaNumber > 128 || charaNumber=='') {
-    alert('Password needs to be between 8 and 128.')
+    var confirmUpper = confirm('Do you want upper case letter?');
+    var confirmLower = confirm('Do you want lower case letters?');
+    var confirmNumber = confirm('Do you want numbers?');
+    var confirmSpecial = confirm('Do you want special characters?');
 
-} else {
-  var confirmUpper = confirm('Do you want upper case letter?');
-  var confirmLower = confirm('Do you want lower case letters?');
-  var confirmNumber= confirm('Do you want numbers?');
-  var confirmSpecial= confirm('Do you want special characters?');
-}}
+    if (!confirmUpper && !confirmLower && !confirmNumber && !confirmSpecial) {
+      alert('You must choose atleast one character set!');
+    }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+    if (confirmUpper) {
+      charaSets= charaSets.concat(upperCase);
+    }
+
+    if (confirmLower) {
+      charaSets= charaSets.concat(lowerCase);
+      
+    }
+
+    if (confirmNumber) {
+      charaSets= charaSets.concat(numbers);
+    }
+
+    if (confirmSpecial) {
+      charaSets= charaSets.concat(specialChara);
+      console.log(charaSets);
+    }
+
+  } else {
+    alert('Password needs to be between 8 and 128.');
+  }
+  
+}
+
+
+
+
+
+  // Add event listener to generate button
+  generateBtn.addEventListener("click", writePassword);
