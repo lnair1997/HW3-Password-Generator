@@ -21,10 +21,11 @@ var numbers = '0123456789'.split('');
 var specialChara = '~`!@#$%^&*()-_=+'.split('');
 var userPassword = [];
 var charaSets = [];
+
 // Generate random password function
 
 function generatePassword() {
-  charaNumber = prompt('How many chara{cters would you like? \nPick a number between 8 and 128.');
+  charaNumber = prompt('How many characters would you like? \nPick a number between 8 and 128.');
   var psLength = parseInt(charaNumber) //turns Input into an integer
 
   if (psLength >= 8 && psLength <= 128 && Number.isInteger(psLength)) {
@@ -66,13 +67,13 @@ function generatePassword() {
     psLength = psLength - userPassword.length;
 
     for (var i = 0; i < psLength; i++) {
-      // Generate a random decimal number between 0 and length of array to select associated list item in array
+      // Generate a random decimal number between 0 and length of array
       var num = Math.random();
       var wholeNum = Math.floor(num * charaSets.length)
 
-      charaSets[wholeNum] //select items from list using random number generated
+      charaSets[wholeNum] 
 
-      userPassword += charaSets[wholeNum] //combine all items selected from list into password list
+      userPassword += charaSets[wholeNum] 
     }
 
     
